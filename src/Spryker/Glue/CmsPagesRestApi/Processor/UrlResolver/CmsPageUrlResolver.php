@@ -25,10 +25,6 @@ class CmsPageUrlResolver implements CmsPageUrlResolverInterface
      */
     protected $cmsStoreClient;
 
-    /**
-     * @param \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToCmsStorageClientInterface $cmsStorageClient
-     * @param \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToStoreClientInterface $cmsStoreClient
-     */
     public function __construct(
         CmsPagesRestApiToCmsStorageClientInterface $cmsStorageClient,
         CmsPagesRestApiToStoreClientInterface $cmsStoreClient
@@ -37,11 +33,6 @@ class CmsPageUrlResolver implements CmsPageUrlResolverInterface
         $this->cmsStoreClient = $cmsStoreClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UrlStorageTransfer $urlStorageTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestUrlResolverAttributesTransfer|null
-     */
     public function resolveCmsPagetUrl(UrlStorageTransfer $urlStorageTransfer): ?RestUrlResolverAttributesTransfer
     {
         $urlStorageTransfer->requireFkResourcePage();
@@ -69,11 +60,6 @@ class CmsPageUrlResolver implements CmsPageUrlResolverInterface
             ->setEntityType(CmsPagesRestApiConfig::RESOURCE_CMS_PAGES);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UrlStorageTransfer $urlStorageTransfer
-     *
-     * @return string|null
-     */
     protected function findLocaleName(UrlStorageTransfer $urlStorageTransfer): ?string
     {
         if ($urlStorageTransfer->getLocaleName()) {

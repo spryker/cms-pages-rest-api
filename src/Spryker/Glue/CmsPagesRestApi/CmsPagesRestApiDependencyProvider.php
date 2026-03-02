@@ -33,11 +33,6 @@ class CmsPagesRestApiDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const CLIENT_STORE = 'CLIENT_STORE';
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
@@ -49,11 +44,6 @@ class CmsPagesRestApiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addCmsStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_CMS_STORAGE, function (Container $container) {
@@ -65,11 +55,6 @@ class CmsPagesRestApiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addCmsPageSearchClient(Container $container): Container
     {
         $container->set(static::CLIENT_CMS_PAGE_SEARCH, function (Container $container) {
@@ -81,11 +66,6 @@ class CmsPagesRestApiDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addStoreClient(Container $container): Container
     {
         $container->set(static::CLIENT_STORE, function (Container $container) {

@@ -70,12 +70,6 @@ class CmsPageReader implements CmsPageReaderInterface
      */
     protected $storeClient;
 
-    /**
-     * @param \Spryker\Glue\CmsPagesRestApi\Processor\RestResponseBuilder\CmsPageRestResponseBuilderInterface $cmsPageRestResponseBuilder
-     * @param \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToCmsStorageClientInterface $cmsStorageClient
-     * @param \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToCmsPageSearchClientInterface $cmsPageSearchClient
-     * @param \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToStoreClientInterface $storeClient
-     */
     public function __construct(
         CmsPageRestResponseBuilderInterface $cmsPageRestResponseBuilder,
         CmsPagesRestApiToCmsStorageClientInterface $cmsStorageClient,
@@ -88,11 +82,6 @@ class CmsPageReader implements CmsPageReaderInterface
         $this->storeClient = $storeClient;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function searchCmsPages(RestRequestInterface $restRequest): RestResponseInterface
     {
         /** @var string $searchString */
@@ -116,11 +105,6 @@ class CmsPageReader implements CmsPageReaderInterface
         return $this->cmsPageRestResponseBuilder->createCmsPageCollectionRestResponse($cmsPageStorageTransfers, $totalPagesFound);
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function getCmsPageById(RestRequestInterface $restRequest): RestResponseInterface
     {
         /** @var string $cmsPageUuid */

@@ -14,11 +14,6 @@ use Orm\Zed\Cms\Persistence\SpyCmsPageQuery;
 
 class CmsPagesRestApiDataHelper extends Module
 {
-    /**
-     * @param int $idCmsPage
-     *
-     * @return \Generated\Shared\Transfer\CmsPageStorageTransfer
-     */
     public function getCmsPageUuidByIdCmsPage(int $idCmsPage): CmsPageStorageTransfer
     {
         $cmsPageUuid = SpyCmsPageQuery::create()

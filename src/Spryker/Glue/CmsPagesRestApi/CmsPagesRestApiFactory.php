@@ -22,9 +22,6 @@ use Spryker\Glue\Kernel\AbstractFactory;
 
 class CmsPagesRestApiFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Processor\Reader\CmsPageReaderInterface
-     */
     public function createCmsPageReader(): CmsPageReaderInterface
     {
         return new CmsPageReader(
@@ -35,9 +32,6 @@ class CmsPagesRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Processor\RestResponseBuilder\CmsPageRestResponseBuilderInterface
-     */
     public function createCmsPageRestResponseBuilder(): CmsPageRestResponseBuilderInterface
     {
         return new CmsPageRestResponseBuilder(
@@ -46,41 +40,26 @@ class CmsPagesRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Processor\Mapper\CmsPageMapperInterface
-     */
     public function createCmsPageMapper(): CmsPageMapperInterface
     {
         return new CmsPageMapper();
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToCmsStorageClientInterface
-     */
     public function getCmsStorageClient(): CmsPagesRestApiToCmsStorageClientInterface
     {
         return $this->getProvidedDependency(CmsPagesRestApiDependencyProvider::CLIENT_CMS_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToCmsPageSearchClientInterface
-     */
     public function getCmsPageSearchClient(): CmsPagesRestApiToCmsPageSearchClientInterface
     {
         return $this->getProvidedDependency(CmsPagesRestApiDependencyProvider::CLIENT_CMS_PAGE_SEARCH);
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Dependency\Client\CmsPagesRestApiToStoreClientInterface
-     */
     public function getStoreClient(): CmsPagesRestApiToStoreClientInterface
     {
         return $this->getProvidedDependency(CmsPagesRestApiDependencyProvider::CLIENT_STORE);
     }
 
-    /**
-     * @return \Spryker\Glue\CmsPagesRestApi\Processor\UrlResolver\CmsPageUrlResolverInterface
-     */
     public function createCmsPageUrlResolver(): CmsPageUrlResolverInterface
     {
         return new CmsPageUrlResolver(

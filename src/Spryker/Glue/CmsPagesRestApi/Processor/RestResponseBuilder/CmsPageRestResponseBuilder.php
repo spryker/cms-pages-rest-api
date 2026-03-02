@@ -29,10 +29,6 @@ class CmsPageRestResponseBuilder implements CmsPageRestResponseBuilderInterface
      */
     protected $cmsPageMapper;
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface $restResourceBuilder
-     * @param \Spryker\Glue\CmsPagesRestApi\Processor\Mapper\CmsPageMapperInterface $cmsPageMapper
-     */
     public function __construct(
         RestResourceBuilderInterface $restResourceBuilder,
         CmsPageMapperInterface $cmsPageMapper
@@ -41,11 +37,6 @@ class CmsPageRestResponseBuilder implements CmsPageRestResponseBuilderInterface
         $this->cmsPageMapper = $cmsPageMapper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CmsPageStorageTransfer $cmsPageStorageTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createCmsPageRestResponse(CmsPageStorageTransfer $cmsPageStorageTransfer): RestResponseInterface
     {
         $restCmsPagesAttributesTransfer = (new RestCmsPagesAttributesTransfer())
@@ -56,9 +47,6 @@ class CmsPageRestResponseBuilder implements CmsPageRestResponseBuilderInterface
         return $this->restResourceBuilder->createRestResponse()->addResource($cmsPageRestResource);
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createCmsPageNotFoundErrorRestResponse(): RestResponseInterface
     {
         return $this->restResourceBuilder->createRestResponse()->addError(
@@ -89,20 +77,11 @@ class CmsPageRestResponseBuilder implements CmsPageRestResponseBuilderInterface
         return $response;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createEmptyResponse(): RestResponseInterface
     {
         return $this->restResourceBuilder->createRestResponse();
     }
 
-    /**
-     * @param string $cmsPageUuid
-     * @param \Generated\Shared\Transfer\RestCmsPagesAttributesTransfer $restCmsPagesAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface
-     */
     protected function createCmsPageRestResource(
         string $cmsPageUuid,
         RestCmsPagesAttributesTransfer $restCmsPagesAttributesTransfer
