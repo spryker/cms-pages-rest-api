@@ -1,0 +1,138 @@
+resource:
+    name: CmsPages
+    shortName: cms-pages
+    description: 'CMS pages catalog'
+
+    provider: Spryker\Glue\CmsPagesRestApi\Api\Storefront\Provider\CmsPagesStorefrontProvider
+
+    paginationEnabled: true
+
+    operations:
+        - type: GetCollection
+          uriTemplate: '/cms-pages'
+          description: 'List CMS pages, optionally filtered by free-text query.'
+          openapiContext:
+              summary: 'List CMS pages'
+              description: 'Returns the CMS pages available in the current store/locale. Supports `?q=...` free-text search and `?page[limit]`/`?page[offset]` pagination.'
+              parameters:
+                  - name: q
+                    in: query
+                    required: false
+                    description: 'Free-text search query.'
+                    schema:
+                        type: string
+                        example: 'about'
+              responses:
+                  200:
+                      description: 'CMS page collection returned.'
+
+        - type: Get
+          uriTemplate: '/cms-pages/{uuid}'
+          uriVariables:
+              uuid:
+                  identifiers: [uuid]
+          description: 'Retrieve a CMS page by UUID.'
+          openapiContext:
+              summary: 'Retrieve a CMS page'
+              description: 'Returns the CMS page identified by UUID for the current store/locale.'
+              responses:
+                  200:
+                      description: 'CMS page returned.'
+                  404:
+                      description: 'CMS page not found.'
+
+    includes:
+        - relationshipName: content-product-abstract-lists
+          targetResource: ContentProductAbstractLists
+          uriTemplate: /content-product-abstract-lists/{id}
+          uriVariableMappings:
+              contentProductAbstractListKeys: id
+
+    properties:
+        uuid:
+            type: string
+            identifier: true
+            writable: false
+            readable: true
+            required: false
+            description: 'Unique CMS page identifier (UUID).'
+            openapiContext:
+                example: '14601b2f-9a82-5817-ba31-fcd2d3da4e74'
+
+        pageKey:
+            type: string
+            writable: false
+            readable: true
+            required: false
+            description: 'A unique key for the CMS page.'
+            openapiContext:
+                example: 'cms-page-1'
+
+        name:
+            type: string
+            writable: false
+            readable: true
+            required: false
+            description: 'Localised CMS page name.'
+            openapiContext:
+                example: 'About Us'
+
+        url:
+            type: string
+            writable: false
+            readable: true
+            required: false
+            description: 'Localised CMS page URL.'
+            openapiContext:
+                example: '/en/about-us'
+
+        validTo:
+            type: string
+            writable: false
+            readable: true
+            required: false
+            description: 'Date and time until which the page is valid.'
+            openapiContext:
+                example: '2030-12-31 23:59:59'
+
+        isSearchable:
+            type: boolean
+            writable: false
+            readable: true
+            required: false
+            description: 'Flag indicating whether the page should appear in search results.'
+            openapiContext:
+                example: true
+
+        contentProductAbstractListKeys:
+            type: array
+            writable: false
+            readable: false
+            required: false
+            description: 'Internal list of content product abstract list keys associated with the page. Drives the `content-product-abstract-lists` relationship; not serialised in the response.'
+
+        pagination:
+            type: array
+            writable: false
+            readable: true
+            required: false
+            description: 'Pagination metadata for the collection. Populated only on the first item of a GET /cms-pages response and consumed by PaginationLinksResponseSubscriber to emit JSON:API top-level pagination links.'
+            openapiContext:
+                properties:
+                    numFound:
+                        type: integer
+                        example: 42
+                    currentPage:
+                        type: integer
+                        example: 1
+                    maxPage:
+                        type: integer
+                        example: 5
+                    currentItemsPerPage:
+                        type: integer
+                        example: 10
+                example:
+                    numFound: 42
+                    currentPage: 1
+                    maxPage: 5
+                    currentItemsPerPage: 10

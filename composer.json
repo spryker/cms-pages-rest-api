@@ -18,9 +18,13 @@
         "spryker/uuid-behavior": "^1.0.0"
     },
     "require-dev": {
+        "spryker/api-platform": "*",
         "spryker/cms": "*",
         "spryker/code-sniffer": "*",
         "spryker/testify": "*"
+    },
+    "suggest": {
+        "spryker/api-platform": "Required to expose API Platform resources."
     },
     "autoload": {
         "psr-4": {
