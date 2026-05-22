@@ -26,6 +26,11 @@ class CmsPagesStorefrontProvider extends AbstractStorefrontProvider
      */
     protected const string CONTENT_PRODUCT_ABSTRACT_LIST_TWIG_FUNCTION_NAME = 'content_product_abstract_list';
 
+    /**
+     * @uses \Spryker\Shared\ContentBanner\ContentBannerConfig::TWIG_FUNCTION_NAME
+     */
+    protected const string CONTENT_BANNER_TWIG_FUNCTION_NAME = 'content_banner';
+
     public function __construct(
         protected CmsPageReaderInterface $cmsPageReader,
         protected CmsPagesExceptionFactory $exceptionFactory,
@@ -79,8 +84,6 @@ class CmsPagesStorefrontProvider extends AbstractStorefrontProvider
         }
 
         if ($resources !== []) {
-            // Consumed by Spryker\ApiPlatform\EventSubscriber\PaginationLinksResponseSubscriber
-            // to emit JSON:API top-level pagination links.
             $resources[0]->pagination = $this->calculatePagination($offset, $limit, $totalCount);
         }
 
@@ -95,23 +98,19 @@ class CmsPagesStorefrontProvider extends AbstractStorefrontProvider
         $resource->url = $cmsPageStorageTransfer->getUrl();
         $resource->validTo = $cmsPageStorageTransfer->getValidTo();
         $resource->isSearchable = $cmsPageStorageTransfer->getIsSearchable();
-        $resource->contentProductAbstractListKeys = $this->extractContentProductAbstractListKeys($cmsPageStorageTransfer);
+        $resource->contentProductAbstractListKeys = $this->extractContentKeys($cmsPageStorageTransfer, static::CONTENT_PRODUCT_ABSTRACT_LIST_TWIG_FUNCTION_NAME);
+        $resource->contentBannerKeys = $this->extractContentKeys($cmsPageStorageTransfer, static::CONTENT_BANNER_TWIG_FUNCTION_NAME);
 
         return $resource;
     }
 
     /**
-     * The legacy `ContentProductAbstractListByCmsPageResourceRelationshipPlugin` reads the keys for
-     * the `content_product_abstract_list` twig function from `contentWidgetParameterMap`. The same
-     * keys feed the API Platform `content-product-abstract-lists` include via the array
-     * `uriVariableMappings`.
-     *
      * @return array<int, string>
      */
-    protected function extractContentProductAbstractListKeys(CmsPageStorageTransfer $cmsPageStorageTransfer): array
+    protected function extractContentKeys(CmsPageStorageTransfer $cmsPageStorageTransfer, string $twigFunctionName): array
     {
         $contentWidgetParameterMap = $cmsPageStorageTransfer->getContentWidgetParameterMap();
-        $keys = $contentWidgetParameterMap[static::CONTENT_PRODUCT_ABSTRACT_LIST_TWIG_FUNCTION_NAME] ?? [];
+        $keys = $contentWidgetParameterMap[$twigFunctionName] ?? [];
 
         return is_array($keys) ? array_values($keys) : [];
     }

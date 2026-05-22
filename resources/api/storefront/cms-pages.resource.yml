@@ -48,6 +48,12 @@ resource:
           uriVariableMappings:
               contentProductAbstractListKeys: id
 
+        - relationshipName: content-banners
+          targetResource: ContentBanners
+          uriTemplate: /content-banners/{id}
+          uriVariableMappings:
+              contentBannerKeys: id
+
     properties:
         uuid:
             type: string
@@ -110,6 +116,13 @@ resource:
             readable: false
             required: false
             description: 'Internal list of content product abstract list keys associated with the page. Drives the `content-product-abstract-lists` relationship; not serialised in the response.'
+
+        contentBannerKeys:
+            type: array
+            writable: false
+            readable: false
+            required: false
+            description: 'Internal list of content banner keys associated with the page. Drives the `content-banners` relationship; not serialised in the response.'
 
         pagination:
             type: array

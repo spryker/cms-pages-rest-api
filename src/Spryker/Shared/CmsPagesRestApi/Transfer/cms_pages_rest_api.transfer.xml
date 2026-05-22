@@ -14,6 +14,11 @@
 
     <transfer name="CmsPageStorage">
         <property name="uuid" type="string" description="A Universally Unique Identifier for an entity."/>
+        <property name="name" type="string"/>
+        <property name="url" type="string"/>
+        <property name="validTo" type="string"/>
+        <property name="isSearchable" type="bool"/>
+        <property name="contentWidgetParameterMap" type="array" singular="contentWidgetParameterMap"/>
     </transfer>
 
     <transfer name="Store">
@@ -36,5 +41,9 @@
         <property name="localeName" type="string" description="The name of a locale, such as 'en_US' or 'de_DE'."/>
         <property name="localeUrls" type="UrlStorage[]" singular="urlStorage" description="A collection of URLs, keyed by locale."/>
         <property name="fkLocale" type="int"/>
+    </transfer>
+
+    <transfer name="Locale">
+        <property name="localeName" type="string" description="The name of a locale, such as 'en_US' or 'de_DE'."/>
     </transfer>
 </transfers>
