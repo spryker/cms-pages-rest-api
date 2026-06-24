@@ -12,21 +12,29 @@ use Spryker\Glue\Kernel\AbstractBundleConfig;
 class CmsPagesRestApiConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var string
      */
     public const RESOURCE_CMS_PAGES = 'cms-pages';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const QUERY_STRING_PARAMETER = 'q';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const RESPONSE_CODE_CMS_PAGE_NOT_FOUND = '3801';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const RESPONSE_DETAIL_CMS_PAGE_NOT_FOUND = 'Cms page not found.';
