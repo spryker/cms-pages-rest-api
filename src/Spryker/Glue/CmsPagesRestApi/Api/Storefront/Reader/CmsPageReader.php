@@ -50,6 +50,8 @@ class CmsPageReader implements CmsPageReaderInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @param array<string, mixed> $requestParameters
      */
     public function searchCmsPages(
         string $searchString,

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Spryker\Glue\CmsPagesRestApi\Api\Storefront\Provider;
 
+use Generated\Api\Storefront\CmsPages\CmsPagesPaginationStorefrontObject;
 use Generated\Api\Storefront\CmsPagesStorefrontResource;
 use Generated\Shared\Transfer\CmsPageStorageTransfer;
 use Spryker\ApiPlatform\State\Provider\AbstractStorefrontProvider;
@@ -84,7 +85,7 @@ class CmsPagesStorefrontProvider extends AbstractStorefrontProvider
         }
 
         if ($resources !== []) {
-            $resources[0]->pagination = $this->calculatePagination($offset, $limit, $totalCount);
+            $resources[0]->pagination = CmsPagesPaginationStorefrontObject::fromArray($this->calculatePagination($offset, $limit, $totalCount));
         }
 
         return $resources;
