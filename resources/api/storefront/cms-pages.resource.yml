@@ -32,6 +32,9 @@ resource:
               uuid:
                   identifiers: [uuid]
           description: 'Retrieve a CMS page by UUID.'
+          extraProperties:
+              notFoundCode: '3801'
+              notFoundMessage: 'Cms page not found.'
           openapiContext:
               summary: 'Retrieve a CMS page'
               description: 'Returns the CMS page identified by UUID for the current store/locale.'
